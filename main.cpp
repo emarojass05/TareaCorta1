@@ -147,19 +147,44 @@ void mergeSort(int array[], int const begin, int const end)
     merge(array, begin, mid, end);
 }
 
+// Complejidad logaritmica Binary Search
+
+int binarySearch(int arr[], int l, int r, int x)
+{
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+
+
+        if (arr[m] == x)
+            return m;
+
+
+        if (arr[m] < x)
+            l = m + 1;
+
+
+        else
+            r = m - 1;
+    }
+
+    return -1;
+}
+
 
 int main() {
-    int n = 1000000000;
+    int n = 10000000;
     int* array = generarArray(n);
+    int x=10;
+    radixsort(array, n);
 
-    // Medir tiempo de ejecución
-    long long tiempoEjecucion = medirTiempo([&array, n]() {
-        mergeSort(array, 0, n -1 );  // Llama a bubbleSort con el array generado
+
+    long long tiempoEjecucion = medirTiempo([&array, n,x]() {
+        binarySearch(array, 0, n - 1, x);
     });
 
     cout << "Tiempo de ejecución en nanosegundos: " << tiempoEjecucion << endl;
 
-    delete[] array; // Libera la memoria asignada al array
+    delete[] array;
 
     return 0;
 }
