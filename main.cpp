@@ -170,16 +170,23 @@ int binarySearch(int arr[], int l, int r, int x)
     return -1;
 }
 
+// Complejidad exponencial secuencia de fibonacci
+long long fibonacci(int n) {
+    if (n <= 1)
+        return n;
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
+}
 
 int main() {
-    int n = 10000000;
+    int n = 30;
     int* array = generarArray(n);
     int x=10;
     radixsort(array, n);
 
 
-    long long tiempoEjecucion = medirTiempo([&array, n,x]() {
-        binarySearch(array, 0, n - 1, x);
+    long long tiempoEjecucion = medirTiempo([n]() {
+        fibonacci(n);
     });
 
     cout << "Tiempo de ejecución en nanosegundos: " << tiempoEjecucion << endl;
